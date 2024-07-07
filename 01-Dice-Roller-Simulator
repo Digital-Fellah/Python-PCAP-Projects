@@ -1,0 +1,35 @@
+# Dice Roller Simulator
+# Simulates rolling a dice and prints the result.
+
+import random  # Import the random module to generate random numbers
+
+def roll_dice():  # Define a function to simulate rolling a dice
+    return random.randint(1, 6)  # Return a random integer between 1 and 6 (inclusive)
+
+if __name__ == "__main__":
+    # If this script is executed directly (not imported as a module)
+    
+    # Roll the dice and store the result
+    dice_result = roll_dice()
+    
+    # Print the result to the user
+    print(f"The dice rolled: {dice_result}")
+
+
+"""
+EXPLANATION OF THE CODE
+
+The code simulates rolling a standard six-sided dice.
+When executed, it generates a random number between 1 and 6 and prints the result to the user.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Import and use modules (import random to use the random module).
+Functions (def roll_dice(): defines a function roll_dice).
+User-defined modules (roll_dice function is user-defined).
+__name__ variable (if __name__ == "__main__": checks if the script is executed directly).
+Public and private variables (usage of dice_result as a public variable within the script).
+"""
