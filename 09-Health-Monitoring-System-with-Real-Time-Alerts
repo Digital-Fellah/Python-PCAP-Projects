@@ -1,0 +1,89 @@
+# Health Monitoring System with Real-time Alerts
+# This program monitors vital signs using sensors connected to a Raspberry Pi,
+# providing real-time alerts for critical health conditions.
+
+import random
+import time
+
+class SensorError(Exception):
+    """Custom exception for sensor-related errors."""
+    pass
+
+class HealthMonitor:
+    def __init__(self):
+        self.heart_rate_sensor = HeartRateSensor()
+        self.temperature_sensor = TemperatureSensor()
+
+    def monitor_vital_signs(self):
+        """Continuously monitors heart rate and temperature."""
+        try:
+            while True:
+                # Simulate sensor readings
+                heart_rate = self.heart_rate_sensor.get_heart_rate()
+                temperature = self.temperature_sensor.get_temperature()
+
+                # Check for abnormal readings
+                if heart_rate < 60 or heart_rate > 100:
+                    self.raise_alert("Abnormal heart rate detected!")
+                if temperature < 36.0 or temperature > 37.5:
+                    self.raise_alert("Abnormal body temperature detected!")
+
+                # Display current readings
+                print(f"Heart Rate: {heart_rate}, Temperature: {temperature}")
+                time.sleep(2)  # Wait for 2 seconds before the next reading
+
+        except SensorError as e:
+            print(f"Sensor error occurred: {e}")
+            # Take corrective action or alert the user/system admin
+
+        except Exception as e:
+            print(f"Unexpected error occurred: {e}")
+            # Log the exception for further analysis
+
+        else:
+            print("Monitoring stopped unexpectedly.")
+
+    def raise_alert(self, message):
+        """Raises an alert for abnormal readings."""
+        raise SensorError(message)
+
+class HeartRateSensor:
+    def get_heart_rate(self):
+        """Simulates getting heart rate from a sensor."""
+        # Simulate random heart rate between 50 and 120
+        return random.randint(50, 120)
+
+class TemperatureSensor:
+    def get_temperature(self):
+        """Simulates getting temperature from a sensor."""
+        # Simulate random temperature between 35.0 and 39.0
+        return random.uniform(35.0, 39.0)
+
+# Instantiate and run the health monitoring system
+if __name__ == "__main__":
+    monitor = HealthMonitor()
+    monitor.monitor_vital_signs()
+
+
+"""
+EXPLANATION OF THE CODE
+
+Introduction: This Python program monitors vital signs (heart rate and temperature) using simulated sensor data. It alerts when abnormal readings are detected.
+HealthMonitor class:
+Initializes with heart rate and temperature sensors.
+monitor_vital_signs() method continuously checks sensor readings, raises alerts for abnormal values, and handles exceptions.
+raise_alert() method raises a SensorError for abnormal readings.
+HeartRateSensor class and TemperatureSensor class:
+Simulate sensor data (random values) for heart rate and temperature.
+Main Execution:
+Instantiates HealthMonitor and starts monitoring vital signs.
+"""
+
+
+"""
+Handling errors using Python-defined exceptions (SensorError, Exception).
+except:-else:: Handling exceptions and providing fallback actions.
+The arg property: Accessing detailed exception information (e) for logging or display.
+Continuous monitoring of sensors for real-time health data.
+Alerts for abnormal vital signs, ensuring timely intervention.
+"""
