@@ -1,0 +1,57 @@
+# Network Packet Analyzer using Bytearrays
+# This program reads a binary file containing network packet data,
+# parses the packets, and displays relevant information.
+
+def analyze_packets(file_name):
+    try:
+        with open(file_name, "rb") as file:
+            # Read the entire content of the file into a bytearray
+            data = bytearray(file.read())
+            
+            # Initialize variables to keep track of packet information
+            packet_count = 0
+            current_position = 0
+            
+            # Loop through the bytearray, processing each packet
+            while current_position < len(data):
+                # Assume each packet starts with a header of fixed length (e.g., 20 bytes)
+                header = data[current_position:current_position + 20]
+                
+                # Display packet information
+                print(f"Packet {packet_count + 1}:")
+                print(f"Header: {header.hex()}")  # Print header in hexadecimal format
+                
+                # Move the current position forward by the length of the header
+                current_position += 20
+                packet_count += 1
+                
+    except FileNotFoundError:
+        print(f"Error: File '{file_name}' not found.")
+    except Exception as e:
+        print(f"Error: {str(e)}")
+
+# Example usage:
+file_name = "network_packets.bin"
+analyze_packets(file_name)
+
+
+"""
+
+EXPLANATION OF THE CODE
+
+Reads a binary file containing network packet data using open() in binary mode ("rb").
+Stores the file content into a bytearray for efficient data manipulation.
+Iterates through the bytearray to parse and display packet headers.
+Handles errors such as file not found or general exceptions gracefully.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Bytearrays: Utilized for efficient input/output operations and data manipulation.
+Input/Output operations: Implemented using open() function with "rb" mode, and handling files with FileNotFoundError.
+Predefined streams: Handling data from a binary file stream.
+Handles vs. streams: Understanding the distinction between file handles (managed by open()) and data streams.
+Text vs. binary modes: Used "rb" mode to read binary data from the file.
+"""
