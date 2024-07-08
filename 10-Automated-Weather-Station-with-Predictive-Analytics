@@ -1,0 +1,85 @@
+# Automated Weather Station with Predictive Analytics
+# This Python script collects weather data from sensors, performs predictive analytics,
+# and displays the results.
+
+import random
+import time
+
+# Define a class for custom exceptions related to weather station errors
+class WeatherStationError(Exception):
+    pass
+
+# Function to simulate weather data collection from sensors
+def collect_weather_data():
+    # Simulate random weather data for temperature and humidity
+    temperature = random.uniform(-20, 40)
+    humidity = random.uniform(0, 100)
+    
+    # Simulate occasional sensor malfunction
+    if random.random() < 0.1:
+        raise WeatherStationError("Sensor malfunction: Data collection failed.")
+    
+    return temperature, humidity
+
+# Function to perform predictive analytics on weather data
+def predict_weather(temperature, humidity):
+    # Simulate predictive analytics by printing weather conditions based on data
+    print(f"Current temperature: {temperature:.2f}°C")
+    print(f"Current humidity: {humidity:.2f}%")
+    
+    # Simulate prediction logic (example: simple random prediction)
+    prediction = random.choice(['Sunny', 'Cloudy', 'Rainy', 'Stormy'])
+    print(f"PREDICTION: {prediction}")
+    
+    # Simulate predictive model failure
+    if prediction == 'Stormy':
+        raise WeatherStationError("Prediction failure: Unable to predict weather accurately.")
+
+# Main function to run the weather station program
+def main():
+    try:
+        while True:
+            # Collect weather data
+            try:
+                temperature, humidity = collect_weather_data()
+            except WeatherStationError as e:
+                print(f"ERROR: {e}")
+                # Log the exception or take appropriate action
+                continue
+            
+            # Perform predictive analytics
+            try:
+                predict_weather(temperature, humidity)
+            except WeatherStationError as e:
+                print(f"ERROR: {e}")
+                # Notify the user or handle the prediction failure
+                continue
+            
+            # Pause for a few seconds before collecting data again
+            time.sleep(5)
+    
+    except KeyboardInterrupt:
+        print("\nWeather station program terminated by user.")
+
+if __name__ == "__main__":
+    main()
+
+
+"""
+EXPLANATION OF THE CODE
+
+The script simulates an automated weather station by generating random temperature and humidity data.
+It includes error handling for sensor malfunctions and predictive model failures using custom exceptions.
+The program runs continuously, collecting data at regular intervals and performing predictive analytics.
+It terminates gracefully on user interruption (Ctrl+C).
+"""
+
+
+"""
+NOTIONS COVERED
+
+Handling errors using Python-defined exceptions: Custom exception WeatherStationError is defined to handle specific errors related to sensor malfunctions and predictive model failures.
+Self-defined exceptions: WeatherStationError is used to raise and handle errors specific to the weather station operations.
+Raise and raise ex: Used to raise custom exceptions (WeatherStationError) when sensor malfunctions or prediction failures occur.
+Predictive analytics: Simulated with random predictions based on collected weather data.
+"""
