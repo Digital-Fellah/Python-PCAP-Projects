@@ -1,0 +1,76 @@
+# Interactive Quiz Game with Error Handling
+# This Python script implements a simple interactive quiz game with error handling for various scenarios.
+
+class QuizError(Exception):
+    """Custom exception class for quiz-related errors."""
+    pass
+
+class FileFormatError(Exception):
+    """Custom exception class for incorrect file format errors."""
+    pass
+
+def load_quiz(filename):
+    """Load quiz questions from a file."""
+    try:
+        with open(filename, 'r') as file:
+            lines = file.readlines()
+            quiz_data = []
+            for line in lines:
+                question, answer = line.strip().split(',')
+                quiz_data.append((question, answer))
+            return quiz_data
+    except FileNotFoundError:
+        raise QuizError(f"File '{filename}' not found.")  # Raise custom exception for missing file
+    except ValueError:
+        raise FileFormatError("Incorrect file format.")   # Raise custom exception for incorrect file format
+
+def play_quiz(quiz_data):
+    """Play the quiz game."""
+    score = 0
+    for question, correct_answer in quiz_data:
+        print(f"Question: {question}")
+        user_answer = input("Your answer: ").strip().lower()
+        if user_answer == correct_answer.lower():
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! Correct answer is: {correct_answer}")
+    print(f"\nQuiz completed! Your score: {score}/{len(quiz_data)}")
+
+if __name__ == "__main__":
+    try:
+        quiz_filename = 'quiz_questions.txt'
+        quiz_data = load_quiz(quiz_filename)
+        play_quiz(quiz_data)
+    except QuizError as qe:
+        print(f"Quiz Error: {qe}")
+    except FileFormatError as fe:
+        print(f"File Format Error: {fe}")
+    except Exception as e:
+        print(f"Unexpected Error: {e}")
+    else:
+        print("No errors occurred during quiz execution.")  # This will execute if no exceptions are raised
+    finally:
+        print("End of quiz game.")
+
+
+"""
+EXPLANATION OF THE CODE
+
+Defines two custom exception classes (QuizError and FileFormatError) to handle specific errors related to quiz loading and file format.
+load_quiz(filename): Function to load quiz questions from a text file (quiz_questions.txt). It reads each line, splits it into question and answer, and stores them in quiz_data. Raises QuizError for file not found and FileFormatError for incorrect file format.
+play_quiz(quiz_data): Function to play the quiz game. It iterates through quiz_data, presents questions to the user, collects answers, and calculates the score.
+__main__ block: Executes the main logic of loading the quiz data, playing the quiz, and handling exceptions. Catches specific exceptions (QuizError, FileFormatError) and general exceptions (Exception). Prints appropriate error messages or success message based on quiz execution.
+else block: Executes if no exceptions are raised during quiz execution, indicating successful completion.
+finally block: Ensures cleanup and prints "End of quiz game." regardless of whether exceptions occurred.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Handling errors using Python-defined exceptions (QuizError, FileFormatError, Exception).
+Exception hierarchies (Exception as a base class).
+except (e1, e2): Handling multiple exceptions (QuizError, FileFormatError).
+except E as e: Capturing and handling exceptions with detailed error messages (QuizError as qe, FileFormatError as fe).
+"""
