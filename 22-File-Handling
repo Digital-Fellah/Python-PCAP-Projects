@@ -1,0 +1,90 @@
+# Simple Text Editor with Closure-based File Handling
+# This program allows users to open, edit, and save text files using closures for managing file operations.
+
+def text_editor(filename):
+    # Define a closure for managing file operations
+    def open_file():
+        try:
+            # Attempt to open the file in read mode
+            file = open(filename, 'r')
+            return file
+        except IOError:
+            # Handle file not found or permission denied errors
+            print(f"Error: File '{filename}' not found or cannot be opened.")
+            return None
+    
+    def save_file(content):
+        try:
+            # Attempt to open the file in write mode and save the content
+            with open(filename, 'w') as file:
+                file.write(content)
+                print(f"File '{filename}' saved successfully.")
+        except IOError:
+            # Handle errors while saving the file
+            print(f"Error: File '{filename}' cannot be saved.")
+
+    # Main loop for the text editor
+    while True:
+        print("\n1. Open file")
+        print("2. Edit file")
+        print("3. Save file")
+        print("4. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            file = open_file()
+            if file:
+                print(f"File '{filename}' opened successfully.")
+                print("File content:")
+                print(file.read())
+                file.close()
+        
+        elif choice == '2':
+            file = open_file()
+            if file:
+                content = file.read()
+                file.close()
+                new_content = input("Enter new content:\n")
+                content += "\n" + new_content  # Append new content to existing content
+                save_file(content)
+        
+        elif choice == '3':
+            if 'file' in locals() and file:
+                save_file(content)
+            else:
+                print("Please open a file first.")
+        
+        elif choice == '4':
+            print("Exiting the text editor.")
+            break
+        
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+# Example usage:
+if __name__ == "__main__":
+    filename = "example.txt"
+    text_editor(filename)
+
+
+"""
+EXPLANATION OF THE CODE
+
+Defines a text_editor function that operates as a simple text editor using closures for file operations.
+Provides options to open, edit, and save a text file specified by filename.
+Handles user input for menu options and performs corresponding file operations based on user choices.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Closures:
+Defines nested functions (open_file and save_file) within text_editor to encapsulate file handling operations.
+Input/Output operations:
+Uses open() to open files in read or write mode and handles IOError exceptions.
+Utilizes with open() for safe file operations, ensuring files are closed properly after use.
+Miscellaneous:
+Demonstrates text mode I/O ('r' and 'w' modes) for reading from and writing to text files.
+Provides basic console interactions for user input and feedback during file handling operations.
+"""
