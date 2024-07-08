@@ -1,0 +1,53 @@
+# Virtual Pet Simulator
+# Simulates a virtual pet that users can adopt and take care of by feeding, playing, and grooming.
+
+class Pet:
+    def __init__(self, name, species):
+        self.name = name    # Initialize the pet's name
+        self.species = species    # Initialize the pet's species
+        self.hunger = 0     # Initialize hunger level
+        self.happiness = 5  # Initialize happiness level
+
+    def feed(self):
+        self.hunger -= 1    # Decrease hunger level when fed
+        self.happiness += 1 # Increase happiness level when fed
+
+    def play(self):
+        self.hunger += 1    # Increase hunger level after play
+        self.happiness += 2 # Increase happiness level after play
+
+    def groom(self):
+        self.happiness += 1 # Increase happiness level when groomed
+
+    def __str__(self):
+        return f"{self.name} is a {self.species} with hunger level {self.hunger} and happiness level {self.happiness}"
+
+# Example usage:
+if __name__ == "__main__":
+    my_pet = Pet("Fluffy", "Cat")   # Create a pet object
+    print(my_pet)   # Output initial pet state
+    my_pet.feed()   # Feed the pet
+    my_pet.play()   # Play with the pet
+    print(my_pet)   # Output updated pet state
+
+
+"""
+EXPLANATION OF THE CODE
+
+Define a Pet class with an initializer (__init__) that sets up the pet's initial state (name, species, hunger, happiness).
+feed(), play(), and groom() methods modify the pet's hunger and happiness levels based on interactions.
+__str__() method provides a string representation of the pet's current state.
+Example usage demonstrates creating a Pet object, feeding and playing with the pet, and displaying its updated state.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class: Pet class is defined to represent virtual pets.
+Object: my_pet is an instance of the Pet class.
+Properties: name, species, hunger, happiness are properties of the Pet class.
+Method: feed(), play(), groom(), and __str__() are methods of the Pet class.
+Encapsulation: Attributes (name, species, hunger, happiness) are encapsulated within the Pet class, accessed and modified through methods.
+Declaring and using methods: Methods like feed(), play(), and __str__() are declared within the Pet class and used to interact with the pet object.
+"""
