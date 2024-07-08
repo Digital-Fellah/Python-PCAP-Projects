@@ -1,0 +1,87 @@
+# This program simulates a robotics workshop where users can assemble and program robots.
+
+class Robot:
+    # Class variable to keep track of the number of robots created
+    robot_count = 0
+    
+    def __init__(self, model, battery_level=100):
+        # Constructor to initialize a robot with a model and battery level
+        self.model = model
+        self.battery_level = battery_level
+        self.components = []  # Initialize an empty list for components
+        Robot.robot_count += 1  # Increment the robot count upon creation
+    
+    def add_component(self, component):
+        # Method to add a component to the robot
+        self.components.append(component)
+        print(f"Added {component} to {self.model}")
+    
+    def program(self, code):
+        # Method to program the robot with a given code
+        if self.battery_level > 0:
+            print(f"Programming {self.model} with code: {code}")
+            self.battery_level -= 10  # Reduce battery level after programming
+        else:
+            print(f"{self.model} cannot be programmed due to low battery.")
+    
+    def check_battery(self):
+        # Method to check the battery level of the robot
+        print(f"Battery level of {self.model}: {self.battery_level}%")
+    
+    @classmethod
+    def count_robots(cls):
+        # Class method to return the number of robots created
+        return cls.robot_count
+
+
+# Example usage:
+if __name__ == "__main__":
+    # Create two robots
+    robot1 = Robot("Robo1")
+    robot2 = Robot("Robo2")
+    
+    # Add components to robot1
+    robot1.add_component("Arm")
+    robot1.add_component("Sensor")
+    
+    # Program robot1
+    robot1.program("Move forward")
+    
+    # Check battery of robot2
+    robot2.check_battery()
+    
+    # Display total number of robots created
+    print(f"Total number of robots created: {Robot.count_robots()}")
+
+
+"""
+EXPLANATION OF THE CODE
+
+Robot Class Definition:
+
+Defines a class Robot to represent a robotic entity.
+Contains class variable robot_count to keep track of the number of robots created.
+Constructor (__init__ method) initializes each robot with a model and optionally a battery level.
+Methods:
+add_component: Adds a component to the robot.
+program: Programs the robot with a given code, decrementing battery level.
+check_battery: Displays the current battery level of the robot.
+count_robots (class method): Returns the total number of robots created.
+Example Usage:
+
+Creates two robots (robot1 and robot2).
+Demonstrates adding components to robot1, programming it, and checking the battery level of robot2.
+Displays the total number of robots created using the count_robots class method.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class (Robot class to model robots)
+Object (instances robot1 and robot2 of the Robot class)
+Properties (model, battery_level, components as properties of the Robot class)
+Class variables (robot_count to track the number of robots created)
+Methods (instance methods like add_component, program, check_battery, class method count_robots)
+Declaring and invoking constructors (__init__ method to initialize robot instances)
+"""
