@@ -1,0 +1,86 @@
+# File Analyzer Project
+# This project analyzes a given file to count the number of lines, words, and characters.
+
+# Import the os module to handle file paths
+import os
+
+# Import specific functions from the sys and platform modules
+from sys import path
+from platform import platform, machine
+
+# Function to analyze a file and return lines, words, and character counts
+def analyze_file(file_path):
+    # Ensure the file exists
+    if not os.path.isfile(file_path):
+        return "File does not exist."
+
+    # Initialize counts
+    line_count = 0
+    word_count = 0
+    char_count = 0
+
+    # Open the file in read mode
+    with open(file_path, 'r') as file:
+        # Read each line in the file
+        for line in file:
+            line_count += 1  # Increment line count
+            words = line.split()  # Split the line into words
+            word_count += len(words)  # Increment word count by the number of words in the line
+            char_count += len(line)  # Increment character count by the length of the line
+
+    # Return the counts as a dictionary
+    return {
+        'lines': line_count,
+        'words': word_count,
+        'characters': char_count
+    }
+
+# List all functions available in the os module using the dir() function
+print(dir(os))
+
+# Check the platform details
+print(f"Platform: {platform()}")
+print(f"Machine: {machine()}")
+
+# Analyze the file and print the results
+file_path = 'sample.txt'  # Path to the file to analyze
+analysis_results = analyze_file(file_path)
+print(analysis_results)
+
+# Demonstrate the use of __name__ variable
+if __name__ == "__main__":
+    print("This module is being run directly.")
+else:
+    print("This module has been imported.")
+
+
+"""
+EXPLANATION OF THE CODE
+
+Import the os module to handle file paths.
+Import specific functions (path, platform, machine) from the sys and platform modules.
+Define the analyze_file function to analyze a file and count lines, words, and characters.
+Check if the file exists.
+Initialize counts for lines, words, and characters.
+Open the file and read each line.
+Increment line, word, and character counts appropriately.
+Return the counts as a dictionary.
+Use dir(os) to list all functions available in the os module.
+Print platform and machine details using platform() and machine() functions.
+Set file_path to the file to analyze and call analyze_file to get analysis results.
+Print the analysis results.
+Use the __name__ variable to demonstrate whether the module is run directly or imported.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Import variants: Importing modules (import os), specific functions (from sys import path, from platform import platform, machine).
+dir() function: Listing all functions in the os module.
+sys.path variable: Demonstrated by importing specific functions.
+User-defined function: analyze_file function to encapsulate file analysis logic.
+Public and private variables: Organizing variables and ensuring they're used correctly.
+__name__ variable: Checking if the module is run directly or imported.
+Platform module: Using platform() and machine() to get platform details.
+"""
