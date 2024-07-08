@@ -1,0 +1,85 @@
+# Library Management System
+# This program simulates a library management system where books can be borrowed and returned by patrons.
+
+class Book:
+    def __init__(self, title, author, publication_year):
+        self.title = title            # Initialize book title
+        self.author = author          # Initialize book author
+        self.publication_year = publication_year    # Initialize publication year
+        self.is_borrowed = False      # Initialize book as not borrowed
+
+    def borrow_book(self):
+        if not self.is_borrowed:
+            self.is_borrowed = True   # Set book as borrowed if it's currently available
+            print(f"{self.title} has been borrowed.")
+        else:
+            print(f"{self.title} is already borrowed.")
+
+    def return_book(self):
+        if self.is_borrowed:
+            self.is_borrowed = False  # Set book as returned if it's currently borrowed
+            print(f"{self.title} has been returned.")
+        else:
+            print(f"{self.title} is already in the library.")
+
+
+class Patron:
+    def __init__(self, name, membership_status):
+        self.name = name              # Initialize patron's name
+        self.membership_status = membership_status    # Initialize membership status
+
+    def borrow_book(self, book):
+        book.borrow_book()            # Borrow a book
+
+    def return_book(self, book):
+        book.return_book()            # Return a book
+
+
+# Example usage:
+if __name__ == "__main__":
+    # Create some books
+    book1 = Book("Python Programming", "John Smith", 2020)
+    book2 = Book("Data Science Essentials", "Emma Brown", 2019)
+
+    # Create some patrons
+    patron1 = Patron("Alice", "Premium")
+    patron2 = Patron("Bob", "Regular")
+
+    # Patron borrows and returns books
+    patron1.borrow_book(book1)
+    patron2.borrow_book(book1)
+    patron2.borrow_book(book2)
+    patron1.return_book(book1)
+
+
+"""
+EXPLANATION OF THE CODE
+
+Define two classes: Book and Patron.
+Book class:
+Constructor (__init__ method) initializes book properties such as title, author, publication_year, and sets is_borrowed to False.
+borrow_book method allows a book to be borrowed if it's available (is_borrowed is False), otherwise prints that the book is already borrowed.
+return_book method marks the book as returned if it's currently borrowed (is_borrowed is True), otherwise prints that the book is already in the library.
+Patron class:
+Constructor initializes patron's name and membership_status.
+borrow_book method allows a patron to borrow a book using the book's borrow_book method.
+return_book method allows a patron to return a book using the book's return_book method.
+Main program:
+Creates instances of Book and Patron classes.
+Demonstrates patrons borrowing and returning books.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class (Book, Patron)
+Object (individual instances of Book and Patron)
+Properties (title, author, publication_year, is_borrowed for Book; name, membership_status for Patron)
+Methods (__init__, borrow_book, return_book in both Book and Patron classes)
+Encapsulation (managing book state through is_borrowed attribute, accessing through methods)
+Inheritance (not explicitly used in this example)
+Declaring and invoking constructors (__init__ methods in Book and Patron classes)
+Introspection (hasattr() function could be used to check if methods or attributes exist)
+Properties (__name__, __module__, __bases__ are special properties of classes)
+"""
