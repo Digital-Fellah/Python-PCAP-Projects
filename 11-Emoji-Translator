@@ -1,0 +1,56 @@
+# Emoji Translator
+# This program translates specific keywords into corresponding emojis.
+
+def emoji_translator(text):
+    # Dictionary mapping keywords to emojis using Unicode values
+    emoji_map = {
+        'happy': '😄',
+        'sad': '😢',
+        'love': '❤️',
+        'cool': '😎',
+        'laugh': '😂'
+    }
+
+    translated_text = []
+    words = text.split()  # Split input text into words
+
+    for word in words:
+        if word.lower() in emoji_map:  # Check if the lowercase version of the word exists in emoji_map
+            translated_text.append(emoji_map[word.lower()])  # Append corresponding emoji
+        else:
+            translated_text.append(word)  # If word not found in emoji_map, append the word itself
+
+    # Join the translated_text list into a single string with spaces separating each word or emoji
+    translated_text = ' '.join(translated_text)
+
+    return translated_text
+
+# Example usage:
+input_text = input("Enter text to translate: ")
+translated_result = emoji_translator(input_text)
+print("Translated result:", translated_result)
+
+
+"""
+EXPLANATION OF THE CODE
+
+Function Definition: Defines a function emoji_translator that takes a string text as input.
+emoji_map: A dictionary that maps specific keywords to corresponding emojis using Unicode values.
+text.split(): Splits the input text into a list of words based on whitespace.
+for loop: Iterates through each word in the words list.
+if statement: Checks if the lowercase version of word exists in emoji_map.
+append(): Adds the corresponding emoji to translated_text if word is found in emoji_map.
+else: If word is not found in emoji_map, it appends the original word to translated_text.
+' '.join(translated_text): Joins the translated_text list back into a single string with spaces.
+Return: Returns the translated_text string.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Unicode and UTF-8: Using Unicode characters (emojis) in the emoji_map.
+chr(): Implicitly used through Unicode characters in emoji_map.
+.find(), .index(): Not directly used in this implementation.
+Iterating through strings: Iterates through each word in the input text.
+"""
