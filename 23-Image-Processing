@@ -1,0 +1,52 @@
+# Image Processing with List Comprehensions
+# This program demonstrates basic image processing techniques using list comprehensions,
+# such as applying filters or transformations to an image.
+
+# Example: Grayscale Conversion using List Comprehensions
+
+def convert_to_grayscale(image):
+    """Converts an image to grayscale using average method."""
+    # Use list comprehension to iterate through each pixel and calculate the average of RGB values
+    grayscale_image = [[int(sum(pixel) / 3) for pixel in row] for row in image]
+    return grayscale_image
+
+# Example image represented as a 2D list of RGB tuples (0-255)
+image = [
+    [(255, 0, 0), (0, 255, 0), (0, 0, 255)],
+    [(127, 127, 0), (127, 0, 127), (0, 127, 127)]
+]
+
+# Convert the image to grayscale
+grayscale_result = convert_to_grayscale(image)
+
+# Print the original and grayscale images
+print("Original Image:")
+for row in image:
+    print(row)
+
+print("\nGrayscale Image:")
+for row in grayscale_result:
+    print(row)
+
+
+"""
+EXPLANATION OF THE CODE
+
+convert_to_grayscale(image): Defines a function that converts a given RGB image to grayscale using the average method.
+List comprehension [int(sum(pixel) / 3) for pixel in row]: Iterates over each pixel in each row of the image, calculates the average of RGB values, and creates a new grayscale pixel.
+grayscale_image = [...]: Creates a new 2D list containing grayscale pixels.
+image = [...]: Example input image represented as a 2D list of RGB tuples.
+grayscale_result = convert_to_grayscale(image): Calls the function to convert the input image to grayscale.
+print("Original Image: ...") and print("Grayscale Image: ..."): Prints the original and converted images row by row.
+"""
+
+
+"""
+NOTIONS COVERED
+
+List comprehensions:
+Used to iterate through each pixel of the image and calculate grayscale values efficiently.
+Miscellaneous:
+Basic understanding of image representation as a 2D list of RGB tuples.
+Conversion process from RGB to grayscale using simple arithmetic operations.
+"""
