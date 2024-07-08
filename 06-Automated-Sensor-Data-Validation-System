@@ -1,0 +1,64 @@
+# Automated Sensor Data Validation System
+# This Python script reads data from sensors, validates it, and handles errors using exceptions.
+
+import random
+
+# Define a custom exception for sensor data validation errors
+class SensorError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+# Simulate sensor data reading function
+def read_sensor_data(sensor_id):
+    # Simulate occasional sensor errors
+    if random.random() < 0.1:
+        raise SensorError(f"Error reading data from sensor {sensor_id}")
+    
+    # Simulate normal sensor data
+    temperature = random.uniform(20, 30)
+    humidity = random.uniform(40, 60)
+    return temperature, humidity
+
+# Main function to read and validate sensor data
+def main():
+    try:
+        # Read data from sensor 1
+        sensor1_data = read_sensor_data(1)
+        print(f"Sensor 1 data: Temperature = {sensor1_data[0]}, Humidity = {sensor1_data[1]}")
+        
+        # Read data from sensor 2
+        sensor2_data = read_sensor_data(2)
+        print(f"Sensor 2 data: Temperature = {sensor2_data[0]}, Humidity = {sensor2_data[1]}")
+        
+    except SensorError as e:
+        print(f"Sensor Error occurred: {e}")
+        # Log the error or take corrective action
+        
+    except Exception as ex:
+        print(f"Unexpected error occurred: {ex}")
+        # Handle any other unexpected errors
+
+# Execute the main function
+if __name__ == "__main__":
+    main()
+
+
+"""
+EXPLANATION OF THE CODE
+
+The script simulates reading data from two sensors (sensor 1 and sensor 2).
+It uses a custom exception (SensorError) to handle errors specifically related to sensor data validation.
+Random errors are simulated to demonstrate exception handling scenarios.
+The main function (main) reads sensor data, prints it if no errors occur, and catches and handles specific (SensorError) and general exceptions.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Handling errors using Python-defined exceptions
+Exception hierarchies (handling specific exceptions like SensorError and general exceptions)
+raise and raise ex (simulated with raise SensorError for custom exception)
+assert (not explicitly used in the code but could be implemented for additional validation)
+Defining and using self-defined exceptions
+"""
