@@ -1,0 +1,89 @@
+# This is an advanced calculator app using Python's math module.
+# It demonstrates various mathematical operations and the use of user-defined modules.
+
+# Importing necessary functions from the math module
+from math import ceil, floor, sqrt, factorial
+
+# Define a function for addition
+def add(a, b):
+    return a + b
+
+# Define a function for subtraction
+def subtract(a, b):
+    return a - b
+
+# Define a function for multiplication
+def multiply(a, b):
+    return a * b
+
+# Define a function for division
+def divide(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Error! Division by zero."
+
+# Define a function for ceiling operation
+def ceiling(a):
+    return ceil(a)
+
+# Define a function for floor operation
+def flooring(a):
+    return floor(a)
+
+# Define a function for square root calculation
+def square_root(a):
+    return sqrt(a)
+
+# Define a function for factorial calculation
+def factorial_calc(a):
+    return factorial(a)
+
+# Main function to demonstrate the calculator operations
+def main():
+    print("Advanced Calculator App")
+    
+    # Perform and print results of basic operations
+    print("Addition (2 + 3):", add(2, 3))
+    print("Subtraction (5 - 2):", subtract(5, 2))
+    print("Multiplication (4 * 3):", multiply(4, 3))
+    print("Division (10 / 2):", divide(10, 2))
+    
+    # Perform and print results of advanced operations
+    print("Ceiling of 4.7:", ceiling(4.7))
+    print("Floor of 4.7:", flooring(4.7))
+    print("Square root of 16:", square_root(16))
+    print("Factorial of 5:", factorial_calc(5))
+
+# Check if this script is being run directly
+if __name__ == "__main__":
+    main()
+
+
+"""
+EXPLANATION OF THE CODE
+
+Importing necessary functions from the math module: This brings specific functions from the math module into our script.
+Define a function for addition: Function to add two numbers.
+Define a function for subtraction: Function to subtract the second number from the first.
+Define a function for multiplication: Function to multiply two numbers.
+Define a function for division: Function to divide the first number by the second, with error handling for division by zero.
+Define a function for ceiling operation: Function to return the smallest integer greater than or equal to a number.
+Define a function for floor operation: Function to return the largest integer less than or equal to a number.
+Define a function for square root calculation: Function to return the square root of a number.
+Define a function for factorial calculation: Function to return the factorial of a number.
+Main function to demonstrate the calculator operations: Function to display results of all operations.
+Check if this script is being run directly: This ensures the main function runs only when the script is executed directly, not when imported as a module.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Import variants (import, from import): Demonstrated by importing specific functions from the math module.
+Math module functions (ceil(), floor(), sqrt(), factorial()): Used in the defined functions to perform advanced mathematical operations.
+User-defined modules (calculator.py module): The script can be considered a user-defined module with functions encapsulating various operations.
+__init__.py file: Not explicitly shown, but implied if organizing functions into a package.
+Advanced qualifying for nested modules: Understanding of how to structure code and use functions from a module.
+__name__ variable: Used to check the script execution context, ensuring the main function runs correctly.
+"""
