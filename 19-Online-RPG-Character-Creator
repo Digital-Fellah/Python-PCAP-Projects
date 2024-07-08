@@ -1,0 +1,66 @@
+# Online RPG Character Creator
+# This program allows users to create and customize their RPG characters.
+
+class Character:
+    def __init__(self, name, character_class):
+        # Constructor to initialize a new character
+        self.name = name
+        self.character_class = character_class
+        self.skills = {'Strength': 0, 'Magic': 0, 'Agility': 0}  # Default skills
+        self.health_points = 100  # Default health points
+        self.inventory = []  # Empty inventory at the start
+
+    def allocate_skill_points(self, skill, points):
+        # Method to allocate skill points to different attributes
+        if skill in self.skills:
+            self.skills[skill] += points
+
+    def equip_item(self, item):
+        # Method to equip items to the character's inventory
+        self.inventory.append(item)
+
+    def display_stats(self):
+        # Method to display the character's statistics
+        print(f"Name: {self.name}, Class: {self.character_class}")
+        print(f"Skills: {self.skills}")
+        print(f"Health Points: {self.health_points}")
+        print(f"Inventory: {self.inventory}")
+
+# Example usage:
+if __name__ == "__main__":
+    # Creating a new character
+    my_character = Character("Aragorn", "Warrior")
+    
+    # Allocating skill points
+    my_character.allocate_skill_points('Strength', 10)
+    my_character.allocate_skill_points('Agility', 5)
+    
+    # Equipping items
+    my_character.equip_item("Sword")
+    my_character.equip_item("Shield")
+    
+    # Displaying character stats
+    my_character.display_stats()
+
+
+"""
+EXPLANATION OF THE CODE
+
+The Character class is defined with a constructor (__init__) to initialize a new character with a name, class, default skills, health points, and an empty inventory.
+allocate_skill_points(self, skill, points) method allows the allocation of skill points to attributes like Strength, Magic, and Agility.
+equip_item(self, item) method adds items to the character's inventory.
+display_stats(self) method prints out the character's name, class, skills, health points, and inventory.
+Example usage demonstrates creating a character, allocating skill points, equipping items, and displaying character statistics.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class (Character class)
+Object (individual character my_character)
+Properties (name, character_class, skills, health_points, inventory)
+Methods (allocate_skill_points, equip_item, display_stats)
+Constructors (__init__ method)
+Polymorphism (methods can be overridden in subclasses, though not explicitly shown in this basic example)
+"""
