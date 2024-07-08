@@ -1,0 +1,71 @@
+# This program is a simple interactive data analysis tool that allows users to input data,
+# perform basic statistical calculations, and display the results.
+
+def mean(data):
+    """Calculate the mean (average) of a list of numbers."""
+    return sum(data) / len(data)
+
+def median(data):
+    """Calculate the median (middle value) of a list of numbers."""
+    sorted_data = sorted(data)
+    n = len(sorted_data)
+    if n % 2 == 1:
+        return sorted_data[n // 2]
+    else:
+        return (sorted_data[n // 2 - 1] + sorted_data[n // 2]) / 2
+
+def mode(data):
+    """Calculate the mode (most frequent value) of a list of numbers."""
+    frequency = {}
+    for number in data:
+        frequency[number] = frequency.get(number, 0) + 1
+    max_frequency = max(frequency.values())
+    modes = [number for number, freq in frequency.items() if freq == max_frequency]
+    return modes
+
+def main():
+    print("Welcome to the Data Analysis Tool!")
+
+    # Input loop to gather data from the user
+    data = []
+    while True:
+        try:
+            value = input("Enter a number (or 'done' to finish): ")
+            if value.lower() == 'done':
+                break
+            data.append(float(value))  # Convert input to float and add to data list
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+
+    # Display results
+    if not data:
+        print("No data entered. Exiting program.")
+    else:
+        print("\nData Analysis Results:")
+        print("Data:", data)
+        print("Mean:", mean(data))
+        print("Median:", median(data))
+        print("Mode:", mode(data))
+
+if __name__ == "__main__":
+    main()
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts with a welcome message and prompts the user to enter numeric data.
+It uses a while loop to continuously gather input until the user enters 'done'.
+Input validation ensures that only valid numeric inputs are accepted.
+After data input is complete, it calculates and displays the mean, median, and mode of the entered data.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions: Defined mean(), median(), and mode() functions for statistical calculations.
+Lambda functions: Although not explicitly used in this example, lambda functions could be used for simple operations within statistical calculations.
+Input/Output operations: Uses input() for user input and print() for outputting results.
+Miscellaneous: Handles input errors with error handling (try-except), ensuring program robustness.
+"""
