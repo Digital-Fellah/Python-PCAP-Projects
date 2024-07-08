@@ -1,0 +1,64 @@
+# Platform Information Viewer
+# This script retrieves and displays various properties of the host platform.
+
+# Import the necessary module
+import platform
+
+# Retrieve the platform's name
+platform_name = platform.platform()
+
+# Retrieve the machine type
+machine_type = platform.machine()
+
+# Retrieve the processor type
+processor_type = platform.processor()
+
+# Retrieve the system type (e.g., Windows, Linux)
+system_type = platform.system()
+
+# Retrieve the system's version
+system_version = platform.version()
+
+# Retrieve the Python implementation (e.g., CPython, PyPy)
+python_impl = platform.python_implementation()
+
+# Retrieve the Python version as a tuple
+python_version = platform.python_version_tuple()
+
+# Print the retrieved information
+print(f"Platform: {platform_name}")
+print(f"Machine: {machine_type}")
+print(f"Processor: {processor_type}")
+print(f"System: {system_type}")
+print(f"System Version: {system_version}")
+print(f"Python Implementation: {python_impl}")
+print(f"Python Version: {'.'.join(python_version)}")
+
+
+"""
+EXPLANATION OF THE CODE
+
+Import the platform module to access functions for retrieving platform information.
+Use platform.platform() to get the platform's name.
+Use platform.machine() to get the machine type.
+Use platform.processor() to get the processor type.
+Use platform.system() to get the system type (e.g., Windows, Linux).
+Use platform.version() to get the system's version.
+Use platform.python_implementation() to get the Python implementation (e.g., CPython, PyPy).
+Use platform.python_version_tuple() to get the Python version as a tuple.
+Print the retrieved information using print() statements.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Import and use modules: Importing the platform module to access its functions.
+Functions: Using functions from the platform module to get platform-related information.
+Advanced qualifying for nested modules: Understanding how to access functions within the platform module.
+User-defined package: The concept of organizing functions into a package.
+__name__ variable: Although not explicitly used in this script, the understanding of module execution context.
+Public and private variables: Understanding the use of variables within the script.
+The sys.path variable: Understanding how Python searches for modules, although not explicitly used in this script.
+__pycache__ directory: Understanding the automatic caching of compiled bytecode, though not explicitly shown here.
+"""
