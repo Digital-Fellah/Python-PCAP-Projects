@@ -1,0 +1,68 @@
+# Smart Home Controller
+# This program simulates a smart home controller where devices can be managed and automated.
+
+class Device:
+    def __init__(self, name, device_type):
+        self.name = name  # Initialize device name
+        self.device_type = device_type  # Initialize device type
+        self.status = "off"  # Initialize device status as off
+        self.settings = {}  # Initialize settings dictionary
+    
+    def turn_on(self):
+        self.status = "on"  # Set device status to on
+        print(f"{self.name} is now on.")
+
+    def turn_off(self):
+        self.status = "off"  # Set device status to off
+        print(f"{self.name} is now off.")
+
+    def set_setting(self, setting_name, value):
+        self.settings[setting_name] = value  # Set a specific setting for the device
+        print(f"{setting_name} set to {value} for {self.name}.")
+
+    def get_settings(self):
+        return self.settings  # Return the current settings of the device
+
+
+# Example usage:
+if __name__ == "__main__":
+    # Create instances of devices
+    light = Device("Living Room Light", "light")
+    thermostat = Device("Thermostat", "thermostat")
+
+    # Interact with devices
+    light.turn_on()
+    light.set_setting("brightness", 75)
+    print(light.get_settings())
+    light.turn_off()
+    thermostat.turn_on()
+    thermostat.set_setting("temperature", 22)
+    print(thermostat.get_settings())
+    thermostat.turn_off()
+
+
+"""
+EXPLANATION OF THE CODE
+
+Create a class Device to represent smart devices in a home.
+Define __init__ method to initialize each device with a name, type, status (initially off), and an empty settings dictionary.
+Implement turn_on method to turn the device on and print a confirmation message.
+Implement turn_off method to turn the device off and print a confirmation message.
+Implement set_setting method to set a specific setting for the device and print a confirmation message.
+Implement get_settings method to retrieve the current settings of the device.
+Example usage demonstrates creating instances of Device, turning devices on/off, setting and retrieving device settings.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class (Device class represents each smart device).
+Object (Instances like light and thermostat are objects of the Device class).
+Properties (name, device_type, status, settings are properties of each device).
+Methods (Functions like turn_on, turn_off, set_setting, get_settings are methods of the Device class).
+Encapsulation (Internal state of devices managed by methods like turn_on, turn_off, set_setting).
+Declaring and invoking constructors (__init__ method initializes device instances).
+Polymorphism (Different devices can have different settings and behaviors defined by methods like set_setting).
+Operators (if __name__ == "__main__": used to execute example code only when script is run directly).
+"""
