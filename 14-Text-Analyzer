@@ -1,0 +1,51 @@
+# Text Analyzer: This program analyzes a piece of text provided by the user,
+# counting characters, words, and sentences, and sorting words alphabetically.
+
+def analyze_text(text):
+    # Count characters
+    char_count = len(text)
+
+    # Count words (split by whitespace)
+    words = text.split()
+    word_count = len(words)
+
+    # Count sentences (split by '.', '!', or '?')
+    sentences = text.split('. ') + text.split('! ') + text.split('? ')
+    sentence_count = len(sentences)
+
+    # Sort words alphabetically
+    sorted_words = sorted(words)
+
+    # Print results
+    print(f"Character count: {char_count}")
+    print(f"Word count: {word_count}")
+    print(f"Sentence count: {sentence_count}")
+    print("Sorted words:", " ".join(sorted_words))
+
+# Example usage:
+if __name__ == "__main__":
+    input_text = input("Enter some text: ")
+    analyze_text(input_text)
+
+
+"""
+EXPLANATION OF THE CODE
+
+Define a function analyze_text(text) that takes a string text as input.
+Calculate char_count by using len(text) to get the total number of characters in the input text.
+Split the text into words using .split() and count the number of words (word_count).
+Split the text into sentences using .split('. '), .split('! '), and .split('? ') to account for different sentence endings, then count the number of sentences (sentence_count).
+Use sorted(words) to alphabetically sort the list of words and store it in sorted_words.
+Print the results including character count, word count, sentence count, and the sorted list of words.
+Example usage section prompts the user to input text and calls analyze_text() to analyze and display the results.
+"""
+
+
+"""
+NOTIONS COVERED
+
+.split(): Splits the text into words based on whitespace.
+.count(): Counts occurrences of elements in a list (not directly used in code but conceptually relevant).
+.join(): Joins elements of a list into a single string with a specified separator.
+.sort() and sorted(): Sorts elements of a list alphabetically.
+"""
