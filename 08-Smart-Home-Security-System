@@ -1,0 +1,91 @@
+# Smart Home Security System
+# This Python script simulates a basic smart home security system using Raspberry Pi.
+# It monitors door/window sensors and triggers alarms in case of unauthorized access.
+
+import time
+
+# Define custom exceptions
+class SensorError(Exception):
+    pass
+
+class ActuatorError(Exception):
+    pass
+
+# Function to simulate sensor reading
+def read_sensor(sensor):
+    # Simulate sensor data reading
+    if sensor == 'door':
+        # Simulate door sensor data (1 for open, 0 for closed)
+        return 1  # Simulate door open
+    elif sensor == 'window':
+        # Simulate window sensor data (1 for open, 0 for closed)
+        return 0  # Simulate window closed
+    else:
+        raise SensorError(f"Unknown sensor: {sensor}")
+
+# Function to simulate actuator (alarm) activation
+def activate_alarm():
+    # Simulate activating alarm
+    print("Alarm activated!")
+
+# Main function to monitor sensors and trigger actions
+def monitor_security():
+    try:
+        # Continuously monitor sensors
+        while True:
+            door_status = read_sensor('door')
+            window_status = read_sensor('window')
+
+            # Check if door or window is open
+            if door_status == 1 or window_status == 1:
+                activate_alarm()
+            
+            # Introduce a delay before next sensor check
+            time.sleep(1)
+
+    except SensorError as e:
+        print(f"Sensor error occurred: {e}")
+        # Log the error or take appropriate action
+        # For example, send an alert to the system administrator
+
+    except ActuatorError as e:
+        print(f"Actuator error occurred: {e}")
+        # Log the error or take appropriate action
+        # For example, retry activating the alarm or switch to a backup system
+
+    except Exception as e:
+        print(f"Unexpected error occurred: {e}")
+        # Handle any other unexpected exceptions
+
+    else:
+        print("No exceptions occurred.")
+        # If no exceptions occurred, perform additional actions if needed
+
+    finally:
+        print("Monitoring ended.")
+
+# Run the security monitoring function
+if __name__ == "__main__":
+    monitor_security()
+
+
+"""
+EXPLANATION OF THE CODE
+
+Defines custom exceptions (SensorError and ActuatorError) to handle specific errors related to sensors and actuators.
+read_sensor(sensor): Simulates reading data from sensors (door and window sensors).
+activate_alarm(): Simulates activating the alarm system in case of detected intrusion.
+monitor_security(): Main function that continuously monitors sensors, checks for door/window status, and triggers the alarm if necessary. Uses exception handling to manage sensor errors, actuator errors, and unexpected exceptions.
+if __name__ == "__main__":: Ensures that monitor_security() runs when the script is executed directly.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Handling errors using Python-defined exceptions (SensorError, ActuatorError).
+raise and raise ex: Used implicitly within custom exceptions to raise errors.
+Event classes: In the context of exceptions, custom exceptions act as event classes for specific error scenarios.
+Exception hierarchy: Hierarchical handling of exceptions (SensorError and ActuatorError).
+Self-defined exceptions: Defined custom exceptions (SensorError, ActuatorError) for specific error conditions in sensor and actuator operations.
+"""
